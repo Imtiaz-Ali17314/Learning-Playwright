@@ -1,19 +1,17 @@
-// @ts-check
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+test("My first test", async ({ page }) => {
+  expect(12).toBe(12);
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("My second test", async function ({ page }) {
+  expect("Imtiaz Ali").toContain("Ali");
+});
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+test("My third test", async function ({ page }) {
+  expect([1, 2, 3, 4, 5]).toContain(9);
+});
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+test.only("My Fourth test", async ({ page }) => {
+  expect(true).toBeFalsy();
 });
