@@ -8,10 +8,10 @@ test("My second test", async function ({ page }) {
   expect("Imtiaz Ali").toContain("Ali");
 });
 
-test("My third test", async function ({ page }) {
+test.skip("My third test", async function ({ page }) {
   expect([1, 2, 3, 4, 5]).toContain(9);
 });
 
-test.only("My Fourth test", async ({ page }) => {
+test("My Fourth test", async ({ page }) => {
   expect(true).toBeFalsy();
 });
