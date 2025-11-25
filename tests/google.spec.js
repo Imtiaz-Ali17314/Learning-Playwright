@@ -11,5 +11,5 @@ test("Verifing google title", async ({ page }) => {
 
   console.log("page title: " + title);
 
-  await expect(page).toHaveTitle("Goole");
+  await expect(page).toHaveTitle("Google");
 });
