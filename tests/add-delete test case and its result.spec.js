@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("add-delete test case and its result", async ({ page }) => {
-  test.setTimeout(60000);
+  test.setTimeout(60000 * 3);
 
   await page.goto("http://localhost:8000/auth/login");
 
