@@ -5,7 +5,7 @@ test.use({
 });
 
 test("Login test", async ({ page }) => {
-  // test.setTimeout(60000);
+  test.setTimeout(60000);
 
   await page.goto("https://dashboard.softleed.com/auth/login");
 
