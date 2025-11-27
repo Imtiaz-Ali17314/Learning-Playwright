@@ -17,10 +17,14 @@ test("add-delete test case and its result", async ({ page }) => {
 
   await expect(page).toHaveURL("http://localhost:8000/");
 
+  await page.waitForLoadState("domcontentloaded");
+
   await page.getByRole("link", { name: "Test Cases" }).click();
   await page.getByRole("link", { name: "󰐕 Add New" }).click();
 
   await expect(page).toHaveURL("http://localhost:8000/add-test-case");
+
+  await page.waitForLoadState("networkidle");
 
   await page.locator('select[name="test_document_id"]').selectOption("1");
   await page.locator('select[name="version"]').selectOption("1");
@@ -74,9 +78,13 @@ test("add-delete test case and its result", async ({ page }) => {
     timeout: 30000,
   });
 
+  await page.waitForLoadState("networkidle");
+
   await page.getByRole("button", { name: "Add Result" }).first().click();
 
   await expect(page).toHaveURL(/add/);
+
+  await page.waitForLoadState("networkidle");
 
   await page
     .locator('iframe[title="Rich Text Area"]')
@@ -95,14 +103,20 @@ test("add-delete test case and its result", async ({ page }) => {
 
   await expect(page).toHaveURL("http://localhost:8000/show-test-results");
 
+  await page.waitForLoadState("networkidle");
+
   await page.getByRole("button", { name: "󰆴" }).first().click();
   await page.getByRole("button", { name: "Yes, Delete it!" }).click();
 
   await page.goto("http://localhost:8000/show-test-results");
 
+  await page.waitForLoadState("networkidle");
+
   await page.getByRole("link", { name: "Test Cases" }).click();
 
   await expect(page).toHaveURL("http://localhost:8000/show-test-cases");
+
+  await page.waitForLoadState("networkidle");
 
   await page.getByRole("button", { name: "󰆴" }).first().click();
   await page.getByRole("button", { name: "Yes, Delete it!" }).click();
