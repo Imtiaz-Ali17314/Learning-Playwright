@@ -1,6 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { log } from "console";
-
 const loginData = JSON.parse(JSON.stringify(require("../usersLogin.json")));
 
 test.describe("Data driven login test", () => {

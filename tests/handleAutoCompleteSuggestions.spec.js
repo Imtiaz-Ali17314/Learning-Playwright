@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test("handel auto complete suggestions using Keyboard", async ({ page }) => {
+test.skip("handel auto complete suggestions using Keyboard", async ({
+  page,
+}) => {
   await page.goto("https://www.google.com/");
 
   await page.locator("textarea[name='q']").click();
@@ -20,7 +22,7 @@ test("handel auto complete suggestions using Keyboard", async ({ page }) => {
   await page.keyboard.press("Enter");
 });
 
-test.only("handel auto complete suggestions using Loop", async ({ page }) => {
+test("handel auto complete suggestions using Loop", async ({ page }) => {
   await page.goto("https://www.google.com/");
 
   await page.locator("textarea[name='q']").click();
@@ -35,7 +37,6 @@ test.only("handel auto complete suggestions using Loop", async ({ page }) => {
 
   for (let i = 0; i < suggestions.length; i++) {
     const text = await suggestions[i].textContent();
-    console.log(text);
     if (text.includes("documentation")) {
       await suggestions[i].click();
       break;

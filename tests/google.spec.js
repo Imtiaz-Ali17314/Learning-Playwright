@@ -5,11 +5,7 @@ test("Verifing google title", async ({ page }) => {
 
   const url = await page.url();
 
-  console.log("page url: " + url);
-
   const title = await page.title();
-
-  console.log("page title: " + title);
 
   await expect(page).toHaveTitle("Google");
 });

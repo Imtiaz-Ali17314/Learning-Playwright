@@ -14,7 +14,7 @@ test.skip("handle JS alert", async ({ page }) => {
   await page.getByRole("button", { name: "Click for JS Alert" }).click();
 });
 
-test("handle JS confirm", async ({ page }) => {
+test.skip("handle JS confirm", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
 
   page.on("dialog", (dialogWindow) => {
@@ -28,7 +28,7 @@ test("handle JS confirm", async ({ page }) => {
   await page.getByText("Click for JS Confirm").click();
 });
 
-test.only("handle JS prompt", async ({ page }) => {
+test("handle JS prompt", async ({ page }) => {
   await page.goto("https://the-internet.herokuapp.com/javascript_alerts");
 
   page.on("dialog", async (dialogWindow) => {
