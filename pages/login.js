@@ -9,10 +9,10 @@ class LoginPage {
       (this.header = "//h4[normalize-space()='Dashboard Login']");
   }
 
-  async loginToApplication() {
-    await this.page.fill(this.email, "imtiazali17314@gmail.com");
+  async loginToApplication(email, pass) {
+    await this.page.fill(this.email, email);
 
-    await this.page.fill(this.password, "123");
+    await this.page.fill(this.password, pass);
 
     await this.page.click(this.loginButton);
   }
