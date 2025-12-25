@@ -3,9 +3,14 @@ node_modules
 .tmp
 npm-debug.log
 
+
+
 # Playwright
 /test-results/
+/auth/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+.vscode

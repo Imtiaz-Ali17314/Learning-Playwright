@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Home Page", async () => {
+test.describe("Home Page without an auth", async () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("https://practicesoftwaretesting.com");
   });
@@ -27,5 +27,20 @@ test.describe("Home Page", async () => {
     await page.getByTestId("search-submit").click();
     await expect(containerGrid.getByRole("link")).toHaveCount(1);
     await expect(page.getByAltText("Thor Hammer")).toBeVisible();
+  });
+});
+
+test.describe("Home Page with customer2 auth", async () => {
+  test.use({
+    storageState: "./linkedIn/auth/customer2.json",
+  });
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto("https://practicesoftwaretesting.com");
+  });
+
+  test("check customer 2 is signed in", async ({ page }) => {
+    await expect(page.getByTestId("nav-sign-in")).not.toBeVisible();
+    await expect(page.getByTestId("nav-menu")).toContainText("Jack Howe");
   });
 });
