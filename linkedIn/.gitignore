@@ -6,6 +6,7 @@ npm-debug.log
 
 
 # Playwright
+/tests/home.spec.ts-snapshots/
 /test-results/
 /auth/
 /playwright-report/

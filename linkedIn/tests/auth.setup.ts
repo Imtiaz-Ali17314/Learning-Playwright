@@ -3,7 +3,7 @@ import { test as setup, expect } from "@playwright/test";
 setup("create customer 2 auth", async ({ page }) => {
   const email = "customer2@practicesoftwaretesting.com";
   const password = "welcome01";
-  const customer2AuthFile = "./linkedIn/auth/customer2.json";
+  const customer2AuthFile = "./auth/customer2.json";
 
   await page.goto("https://practicesoftwaretesting.com/auth/login");
 
