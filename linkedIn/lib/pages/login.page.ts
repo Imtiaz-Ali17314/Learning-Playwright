@@ -5,6 +5,7 @@ export class LoginPage {
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
   readonly loginBtn: Locator;
+
   constructor(page: Page) {
     this.page = page;
     this.emailInput = page.getByTestId("email");
@@ -13,7 +14,7 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto('https://practicesoftwaretesting.com/auth/login');
+    await this.page.goto("https://practicesoftwaretesting.com/auth/login");
   }
 
   async login(email: string, password: string) {

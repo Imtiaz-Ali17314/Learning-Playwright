@@ -1,6 +1,6 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../../lib/pages/login.page";
-import { registerUser } from "../../lib/dataFactory/register";
+import { test, expect } from "@fixtures/page.fixture";
+import { LoginPage } from "@pages/login.page";
+import { registerUser } from "@dataFactory/register";
 
 test("Login without Page Object", async ({ page }) => {
   await page.goto("https://practicesoftwaretesting.com/");
@@ -37,6 +37,19 @@ test("Login with newly registered user", async ({ page }) => {
   await registerUser(email, password);
 
   const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login(email, password);
+
+  await expect(page.getByTestId("nav-menu")).toContainText("Imtiaz Ali");
+  await expect(page.getByTestId("page-title")).toContainText("My account");
+});
+
+test("Login with fixture", async ({ page, loginPage }) => {
+  const email = `test1${Date.now()}@gmail.com`;
+  const password = "TessssssT@123";
+
+  await registerUser(email, password);
+
   await loginPage.goto();
   await loginPage.login(email, password);
 
