@@ -57,4 +57,29 @@ test.describe("Home Page with customer2 auth", async () => {
     await expect(page.getByTestId("nav-sign-in")).not.toBeVisible();
     await expect(page.getByTestId("nav-menu")).toContainText("Jack Howe");
   });
+
+  test("validate product data is visible in UI from API", async ({ page }) => {
+    let products: any;
+    test.step("intercept /products", async () => {
+      await page.route(
+        "https://api.practicesoftwaretesting.com/products**",
+        async (route) => {
+          const response = await route.fetch();
+          products = await response.json();
+          route.continue();
+        }
+      );
+    });
+
+    await page.goto("/");
+
+    await expect(page.locator(".skeleton").first()).not.toBeVisible();
+
+    const productsGrid = page.locator(".col-md-9");
+
+    for (const product of products.data) {
+      await expect(productsGrid).toContainText(product.name);
+      await expect(productsGrid).toContainText(product.price.toString());
+    }
+  });
 });
