@@ -83,3 +83,52 @@ test.describe("Home Page with customer2 auth", async () => {
     }
   });
 });
+
+test("validate product data is visible in UI from modified API", async ({
+  page,
+}) => {
+  test.step("overwrite /products", async () => {
+    await page.route(
+      "https://api.practicesoftwaretesting.com/products**",
+      async (route) => {
+        const response = await route.fetch();
+        const json = await response.json();
+        json.data[0]["name"] = "Mocked Product";
+        json.data[0]["price"] = 12300.03;
+        json.data[0]["in_stock"] = false;
+
+        await route.fulfill({ response, json });
+      }
+    );
+  });
+
+  await page.goto("/");
+
+  const productsGrid = page.locator(".col-md-9");
+
+  await expect(productsGrid.getByRole("link").first()).toContainText(
+    "Mocked Product"
+  );
+
+  await expect(productsGrid.getByRole("link").first()).toContainText(
+    "12300.03"
+  );
+
+  await expect(productsGrid.getByRole("link").first()).toContainText(
+    "Out of stock"
+  );
+});
+
+test("validate product data is loaded from HAR file", async ({ page }) => {
+  test.step("Mock /products", async () => {
+    await page.routeFromHAR(".har/products.har", {
+      url: "https://api.practicesoftwaretesting.com/products**",
+      update: false,
+    });
+  });
+
+  await page.goto("/");
+  const productsGrid = page.locator(".col-md-9");
+  await expect(productsGrid).toContainText("Happy path pliers");
+  await expect(productsGrid).toContainText("1.99");
+});
