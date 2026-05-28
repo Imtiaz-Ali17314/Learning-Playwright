@@ -179,7 +179,7 @@ Make sure the following are installed:
 ### Installation & Run Steps
 1.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/Imtiaz-Ali17314/Learning-Playwright
+    git clone https://github.com/Imtiaz-Ali17314/Learning-Playwright.git
     cd Learning-Playwright
     ```
 
