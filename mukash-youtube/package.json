@@ -6,15 +6,15 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Imtiaz-Ali17314/Learning-Playwright.git"
+    "url": "git+https://github.com/imtiazaly/Learning-Playwright.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Imtiaz-Ali17314/Learning-Playwright/issues"
+    "url": "https://github.com/imtiazaly/Learning-Playwright/issues"
   },
-  "homepage": "https://github.com/Imtiaz-Ali17314/Learning-Playwright#readme",
+  "homepage": "https://github.com/imtiazaly/Learning-Playwright#readme",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@types/node": "^24.10.1",
